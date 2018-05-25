@@ -8,15 +8,15 @@ class Server:
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_socket.bind((TCP_IP, int(TCP_PORT)))
         self.server_socket.listen(5)
-        print "[INFO] Server IP: ", TCP_IP
-        print "[INFO] Server is listening on port: ", TCP_PORT, "\n"
+        print "\n[INFO] Server IP: %s" %(TCP_IP)
+        print "[INFO] Server is listening on port: %s" %(TCP_PORT)
 
     def start(self):
         while True:
             client_socket, addr = self.server_socket.accept()
             clientThread = ClientThread(client_socket, addr, self.THREAD_INDEX)
             clientThread.start()
-            print "[INFO] THREAD#%s is created" % (self.THREAD_INDEX)
+            print "[INFO] THREAD[%s] is created\n" % (self.THREAD_INDEX),
             self.THREAD_INDEX += 1
 
 if __name__ == "__main__":

@@ -8,12 +8,11 @@ class Client:
         print "[INFO] Client connected to server[", TCP_IP, "] on port: ", TCP_PORT
 
     def connect(self):
-        for x in range (0,1024):
-            self.client_socket.send(str(x))
-            print "[SENT DATA]     %s"  %(str(x))
-            data = self.client_socket.recv(self.BUFFER_SIZE) #echo
-            print "[RECEIVED DATA] %s \n" %(data)
-
+        for i in range (1,512):
+            self.client_socket.send(str(i))
+            THREAD_INDEX = self.client_socket.recv(self.BUFFER_SIZE)
+            print "Client[%s] sent:   %s\n" %(THREAD_INDEX, i),
+            
         self.client_socket.close() 
 
 if __name__ == "__main__":
